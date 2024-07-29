@@ -21,7 +21,7 @@ export class SwaggerScanner {
       includedModules
     );
     const denormalizedPaths = modules.map(
-      ({ routes, metatype, relatedModules }) => {
+      ({ controllers: routes, metatype, imports: relatedModules }) => {
         let allRoutes = new Map(routes);
 
         if (deepScanRoutes) {
@@ -30,7 +30,7 @@ export class SwaggerScanner {
             .filter(
               relatedModule => !container.isGlobalModule(relatedModule as any)
             )
-            .map(({ routes: relatedModuleRoutes }) => relatedModuleRoutes)
+            .map(({ controllers: relatedModuleRoutes }) => relatedModuleRoutes)
             .forEach(relatedModuleRoutes => {
               allRoutes = new Map([...allRoutes, ...relatedModuleRoutes]);
             });

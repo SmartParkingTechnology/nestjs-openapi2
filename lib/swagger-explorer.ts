@@ -4,7 +4,7 @@ import { Controller } from '@nestjs/common/interfaces';
 import {
   isString,
   isUndefined,
-  validatePath
+  addLeadingSlash
 } from '@nestjs/common/utils/shared.utils';
 import { InstanceWrapper } from '@nestjs/core/injector/instance-wrapper';
 import { MetadataScanner } from '@nestjs/core/metadata-scanner';
@@ -180,7 +180,7 @@ export class SwaggerExplorer {
         pathWithParams += `${item.prefix}{${item.name}}`;
       }
     }
-    return pathWithParams === '/' ? '' : validatePath(pathWithParams);
+    return pathWithParams === '/' ? '' : addLeadingSlash(pathWithParams);
   }
 
   private mergeMetadata(globalMetadata, methodMetadata) {
