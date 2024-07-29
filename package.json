@@ -1,10 +1,10 @@
 {
-  "name": "@nestjs/swagger",
-  "version": "3.1.0",
-  "description": "Nest - modern, fast, powerful node.js web framework (@swagger)",
-  "author": "Kamil Mysliwiec",
+  "name": "nestjs-openapi2",
+  "version": "1.0.0",
+  "description": "OpenAPI 2 fork of the @nestjs/swagger@3.1.0 package",
+  "author": "Clemens Zeidler",
   "license": "MIT",
-  "repository": "https://github.com/nestjs/swagger",
+  "repository": "https://github.com/SmartParkingTechnology/nestjs-swagger-openapi2",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
