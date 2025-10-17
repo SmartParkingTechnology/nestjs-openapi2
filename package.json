@@ -1,6 +1,6 @@
 {
   "name": "nestjs-openapi2",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "OpenAPI 2 fork of the @nestjs/swagger@3.1.0 package",
   "author": "Clemens Zeidler",
   "license": "MIT",
@@ -8,6 +8,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "prepare": "npm run build",
     "format": "prettier lib/**/*.ts --write",
     "prepublish:next": "npm run build",
     "publish:next": "npm publish --access public --tag next",
@@ -17,7 +18,7 @@
   },
   "dependencies": {
     "lodash": "4.17.21",
-    "path-to-regexp": "3.0.0"
+    "path-to-regexp": "6.3.0"
   },
   "devDependencies": {
     "@nestjs/common": "^10.4.18",
