@@ -2,6 +2,7 @@ import { RequestMethod } from '@nestjs/common';
 import { METHOD_METADATA, PATH_METADATA } from '@nestjs/common/constants';
 import { Controller } from '@nestjs/common/interfaces';
 import {
+  isNil,
   isString,
   isUndefined,
   addLeadingSlash
@@ -83,10 +84,11 @@ export class SwaggerExplorer {
     }
     const self = this;
     const globalMetadata = this.exploreGlobalMetadata(metatype);
-    const denormalizedPaths = this.metadataScanner.scanFromPrototype(
-      instance,
-      prototype,
-      name => {
+    // Walk every method on the controller and describe it for the document.
+    // Excluded endpoints come back as undefined and are dropped below.
+    const denormalizedPaths = this.metadataScanner
+      .getAllMethodNames(prototype)
+      .map(name => {
         const targetCallback = prototype[name];
         const excludeEndpoint = exploreApiExcludeEndpointMetadata(
           instance,
@@ -127,8 +129,8 @@ export class SwaggerExplorer {
           ...globalMetadata,
           ...mergedMethodMetadata
         };
-      }
-    );
+      })
+      .filter(route => !isNil(route));
     return denormalizedPaths;
   }
 
